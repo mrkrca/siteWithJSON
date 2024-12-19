@@ -1,0 +1,62 @@
+
+
+    <%-include("partials/header.ejs") %>
+    <body style="background-color: #1e2129">
+    <% if(locals.movie) { %>
+
+    
+
+
+
+    <div class="hero-section " style="background-color: #1e2129">
+        <div class="container">
+            <div class="hero-image-container">
+                <img src="<%=movie.Images[0]%>"  alt="Kraven Movie Banner" class="img-fluid w-100" style="object-fit: cover; border-radius: 12px;">
+                <div class="play-button">
+                    <i class="fas fa-play fa-2x text-white"></i>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="<%=movie.Images[1]%>"  alt="Kraven Movie Poster" class="movie-poster img-fluid mb-3">
+                    <div class="action-buttons">
+                        <button class="btn btn-info mb-2 w-100">Stream in HD</button>
+                        <button class="btn btn-outline-info w-100">Download in HD</button>
+                        <button class="btn btn-outline-secondary w-100 mt-2">Trailer</button>
+                    </div>
+                </div>
+                
+                <div class="col-md-9">
+                    
+                    <div class="movie-info">
+                        <h1 class="mb-3"><%=movie.movieName %></h1>
+                        <p class=""><%=movie.description %></p>
+                        
+                        <div class="row mt-4">
+                            
+                            <div class="col-md-6">
+                                <p><strong>Genre:</strong> <span class="text-info"><%=movie.Title %></span></p>
+                              <p><strong>Actor:</strong> <span class="text-info"><%=movie.Actors %></span></p>
+                                <p><strong>Director:</strong> <span class="text-info"><%=movie.Director %></span></p>
+                                <p><strong>Country:</strong> <span class="text-info"><%=movie.Country %></span></p> 
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <p><strong>Duration:</strong><%=movie.Runtime %></p>
+                                <p><strong>Quality:</strong> <span class="badge bg-warning text-dark">HD</span></p>
+                                <p><strong>Release:</strong> <%=movie.Released %></p>
+                                <p><strong>IMDb:</strong><%=movie.imdbRating %></p>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   <%}%>
+</body>
+    <%-include("partials/footer.ejs") %>
