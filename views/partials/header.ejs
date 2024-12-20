@@ -27,11 +27,13 @@
             <button class="btn" style="color: #8e95a5; border: none;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
               Genre
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: #13151a; "> 
-              <li><a class="dropdown-item " style="color: #8e95a5;" href="#">Action</a></li>
-              <li><a class="dropdown-item" style="color: #8e95a5;"href="#">Adventure</a></li>
-              <li><a class="dropdown-item" style="color: #8e95a5;"href="#">Fantasy</a></li>
+          
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: #13151a;">
+                <li><a class="dropdown-item" style="color: #8e95a5;" href="#" onclick="submitGenre('Action')">Action</a></li>
+                <li><a class="dropdown-item" style="color: #8e95a5;" href="#" onclick="submitGenre('Adventure')">Adventure</a></li>
+                <li><a class="dropdown-item" style="color: #8e95a5;" href="#" onclick="submitGenre('Fantasy')">Fantasy</a></li>
             </ul>
+             
           </div>
         </ul>
 
@@ -44,6 +46,24 @@
   </header>
 
 
+    <script>
+     
+    function submitGenre(genre) {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/searchByGenre';  
+
+        const genreInput = document.createElement('input');
+        genreInput.type = 'hidden';
+        genreInput.name = 'genre';
+        genreInput.value = genre;
+
+        form.appendChild(genreInput);
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+        
     
 
 </html>

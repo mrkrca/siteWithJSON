@@ -10,7 +10,7 @@
             const currentPage = parseInt(query.page) || 1;
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
-            const paginatedMovies = movies.slice(startIndex, endIndex);
+            const paginatedMovies = movies.slice(startIndex, endIndex); 
             %>
             <div class="movies-wrapper">
               <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-3">
@@ -52,7 +52,7 @@
 
                 <!-- Previous button -->
                 <li class="page-item <%= currentPage === 1 ? 'disabled' : '' %>">
-                    <a  class="page-link" href="?page=<%= currentPage - 1 %>" <%= currentPage === 1 ? 'tabindex="-1" aria-disabled="true"' : '' %>>Previous</a>
+                    <a class="page-link" href="?page=<%= currentPage - 1 %>" <%= currentPage === 1 ? 'tabindex="-1" aria-disabled="true"' : '' %>>Previous</a>
                 </li>
 
                 <!-- First page if not visible -->

@@ -8,6 +8,14 @@ import fs from "fs"
 const app = express();
 const port = 3000;
 
+const db = new pg.Client({
+    user: "postgres",
+    host: "localhost",
+    database: "permalist",
+    password: "1212",
+    port: 5432,
+});
+db.connect();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -26,7 +34,7 @@ app.get("/", (req, res) => {
 
         const moviesData = JSON.parse(data);
 
-        console.log(moviesData);
+       
 
        
         res.render("index.ejs", { movies: moviesData , query: query, currentDate});
@@ -44,15 +52,15 @@ app.get("/view/:imdbID", (req, res) => {
         }
 
         const moviesData = JSON.parse(data);
-        console.log(moviesData);
+      
 
-        // Use string comparison for imdbID
+       
         const movie = moviesData.find((m) => m.imdbID === req.params.imdbID);
         
         if (movie) {
-            res.render("view.ejs", { movie , currentDate}); // Pass movie directly to the view
+            res.render("view.ejs", { movie , currentDate}); 
         } else {
-            res.status(404).send('Movie not found'); // Handle movie not found case
+            res.status(404).send('Movie not found');  
         }
     });
 });
@@ -70,9 +78,7 @@ app.post("/new", (req, res)=>  {
         description: description,
     });
 
-    console.log(movieName);
-    console.log(genre);
-    console.log(description);
+    
 
 
     res.render("new.ejs", {movies:movies, currentDate})
@@ -80,6 +86,32 @@ app.post("/new", (req, res)=>  {
 })
 
 
+app.post("/searchByGenre", (req, res) => {
+    let genre = req.body.genre;
+  
+    fs.readFile('movies.JSON', 'utf8', (err, data) => {
+        if (err) {
+            console.error("Error reading JSON file:", err);
+            return res.status(500).send("Server Error");
+        }
+
+        const moviesData = JSON.parse(data);
+
+        
+        const filteredMovies = moviesData.filter((movie) => {
+            return movie.Genre.includes(genre);
+        });
+        
+    
+        
+        if (filteredMovies.length > 0) {
+            
+            res.render("index.ejs", { movies: filteredMovies, query: req.query, currentDate });
+        } else {
+            res.render("index.ejs", { movies: filteredMovies, query: req.query, currentDate });
+        }
+    });
+});
 
 app.listen(port, ()=> {
 console.log(`Listening to port ${port}`);
