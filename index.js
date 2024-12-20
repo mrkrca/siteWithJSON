@@ -113,6 +113,34 @@ app.post("/searchByGenre", (req, res) => {
     });
 });
 
+
+app.post("/search", (req, res) => {
+    const searchQuery = req.body.searchQuery;
+  
+
+    fs.readFile('movies.JSON', 'utf8', (err, data) => {
+        if (err) {
+            console.error("Error reading JSON file:", err);
+            return res.status(500).send("Server Error");
+        }
+
+        const moviesData = JSON.parse(data);
+
+        let filteredMovies = moviesData;
+
+     
+        if (searchQuery) {
+            filteredMovies = filteredMovies.filter(movie => 
+                movie.Title.toLowerCase().includes(searchQuery.toLowerCase()) 
+            );
+        }
+
+        // Render the filtered movies
+        res.render("index.ejs", { movies: filteredMovies, query: req.query, currentDate });
+    });
+});
+
+
 app.listen(port, ()=> {
 console.log(`Listening to port ${port}`);
 
