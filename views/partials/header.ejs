@@ -54,7 +54,7 @@
     function submitGenre(genre) {
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = '/searchByGenre';  
+        form.action = `/filter/genre/${genre}`; 
 
         const genreInput = document.createElement('input');
         genreInput.type = 'hidden';

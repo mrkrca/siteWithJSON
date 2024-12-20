@@ -86,7 +86,7 @@ app.post("/new", (req, res)=>  {
 })
 
 
-app.post("/searchByGenre", (req, res) => {
+app.post("/filter/genre/:genre", (req, res) => {
     let genre = req.body.genre;
   
     fs.readFile('movies.JSON', 'utf8', (err, data) => {
