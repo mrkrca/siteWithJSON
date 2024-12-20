@@ -1,9 +1,9 @@
 <%- include("partials/header.ejs") %>
-<body style="background-color: #1e2129">
+<body style="background-color: #1e2129; ">
 
 
     <div class="main-container">
-        <div class="container">
+        <div class="container" >
           <% if (locals.movies) { %>
             <% 
             const itemsPerPage = 18;
@@ -37,7 +37,7 @@
             </div>
       
             <!-- Pagination -->
-            <nav aria-label="Movie pagination">
+            <nav aria-label="Movie pagination" >
               <ul class="pagination justify-content-center">
                 <% 
                 const totalPages = Math.ceil(movies.length / itemsPerPage);
@@ -52,7 +52,7 @@
 
                 <!-- Previous button -->
                 <li class="page-item <%= currentPage === 1 ? 'disabled' : '' %>">
-                    <a style="background-color: #13151a;" class="page-link" href="?page=<%= currentPage - 1 %>" <%= currentPage === 1 ? 'tabindex="-1" aria-disabled="true"' : '' %>>Previous</a>
+                    <a  class="page-link" href="?page=<%= currentPage - 1 %>" <%= currentPage === 1 ? 'tabindex="-1" aria-disabled="true"' : '' %>>Previous</a>
                 </li>
 
                 <!-- First page if not visible -->

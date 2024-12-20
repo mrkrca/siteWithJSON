@@ -2,7 +2,7 @@ body {
     margin:  0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(77, 63, 63);
+    background-color: #1e2129;
     overflow: auto;
     min-height: 100vh;
     display: flex;
@@ -10,49 +10,16 @@ body {
 }
 
 
-a {
+
+header a {
     text-decoration: none;
     color: black;
 }
 
-header {
-    width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: #1e2028 "
-}
-
-
 .footer_wrapper {
     width: 100%;
 }
-.header {
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    max-width: 1200px;
-    margin: 0 auto;
-    
-}
 
-.left-header {
-    display: flex;
-    align-items: center;
-    margin: 20px;
-    gap: 20px;
-}
-
-.headings {
-    margin-left: 20px;
-    
-
-}
-
-.headings a{
-    margin: 20px;
-    font-size: large;    
-    color: hsl(223, 20%, 70%);
-}
 .movie-grid {
     background-color: #1a1a1a;
   }
@@ -119,7 +86,7 @@ header {
   }
   .hero-section {
     background-color: #1a1a1a;
-    color: white;
+    color: #8e95a5;
     padding: 3rem 0;
 }
 .movie-poster {
@@ -148,10 +115,13 @@ header {
     background-color: #2a2a2a;
     border-radius: 8px;
     padding: 1.5rem;
+    gap:20px;
 }
 .action-buttons .btn {
     width: 100%;
     margin-bottom: 1rem;
+    background-color: #22b7c9;
+    color: black;
 }
 .main-container {
     flex: 1;
@@ -159,3 +129,6 @@ header {
     display: flex;
     flex-direction: column;
   }
+
+
+  
