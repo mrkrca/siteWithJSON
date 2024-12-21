@@ -4,7 +4,8 @@
 
     <div class="main-container">
         <div class="container" >
-          <% if (locals.movies) { %>
+        
+          <% if (locals.movies ) { %>
             <% 
             const itemsPerPage = 18;
             const currentPage = parseInt(query.page) || 1;
@@ -93,6 +94,7 @@
             </ul>
         </nav>
     <% } %>
+    
 </div>
 <script
   src="https://code.jquery.com/jquery-3.7.1.js"

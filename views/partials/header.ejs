@@ -14,7 +14,7 @@
     <title>Site</title>
 </head>
 
-<header class="p-3 mb-3 " style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; color: #93aaad;">
+<header class="p-3 mb-3" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; color: #93aaad;">
     
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -48,13 +48,13 @@
     </div>
   </header>
 
-
+  <main style="flex: 1;">
     <script>
      
     function submitGenre(genre) {
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = `/filter/genre/${genre}`; 
+          form.action = `/filter/genre/${genre}`; 
 
         const genreInput = document.createElement('input');
         genreInput.type = 'hidden';

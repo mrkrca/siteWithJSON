@@ -3,11 +3,13 @@ import bodyParser from "body-parser";
 import pg from "pg";
 import axios from "axios";
 import fs from "fs"
+import { error } from "console";
 
 
 const app = express();
 const port = 3000;
 
+// ignore database connection
 const db = new pg.Client({
     user: "postgres",
     host: "localhost",
@@ -65,7 +67,7 @@ app.get("/view/:imdbID", (req, res) => {
     });
 });
 
-
+// not in works
 app.post("/new", (req, res)=>  {
     var movieName = req.body.movieName;
     var genre = req.body.genre;
@@ -116,27 +118,27 @@ app.post("/filter/genre/:genre", (req, res) => {
 
 app.post("/search", (req, res) => {
     const searchQuery = req.body.searchQuery;
-  
-
-    fs.readFile('movies.JSON', 'utf8', (err, data) => {
+    fs.readFile("movies.JSON", "utf8", (err, data) => {
         if (err) {
             console.error("Error reading JSON file:", err);
-            return res.status(500).send("Server Error");
+            return res.render("index.ejs", { 
+                movies: [], 
+                query: req.query, 
+                currentDate, 
+                errorMsg: "Error loading movies for search." 
+            });
         }
-
         const moviesData = JSON.parse(data);
+        const filteredMovies = moviesData.filter(movie => 
+            movie.Title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
 
-        let filteredMovies = moviesData;
-
-     
-        if (searchQuery) {
-            filteredMovies = filteredMovies.filter(movie => 
-                movie.Title.toLowerCase().includes(searchQuery.toLowerCase()) 
-            );
-        }
-
-        // Render the filtered movies
-        res.render("index.ejs", { movies: filteredMovies, query: req.query, currentDate });
+        res.render("index.ejs", { 
+            movies: filteredMovies, 
+            query: req.query, 
+            currentDate, 
+            errorMsg: filteredMovies.length === 0 ? "No movies matched your search." : null 
+        });
     });
 });
 
